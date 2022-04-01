@@ -34,7 +34,7 @@ Ahora leemos de abajo hacia arriba los restos, al concatenarlos, obtendremos nue
 var resultado = '';
 while (num > 0){
   resultado = (num % 2 ) + resultado;
-  num =Math.floor(num/2);
+  num = Math.floor(num / 2);
 }
 return resultado;
     
