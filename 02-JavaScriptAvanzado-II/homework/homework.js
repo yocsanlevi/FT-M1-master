@@ -1,18 +1,16 @@
 'use strict'
 
-function counter() {
-  // Retorna una funcion que cuando sea invocada retorne un valor creciente.
-  // el primer valor deberia ser 1.
-  // Vas a tener que usar closures.
-  // ejemplo: const newCounter = counter();
-  // newCounter(); // 1
-  // newCounter(); // 2
-  var number = 0;
-  return function  (){
-
-    return ++number;
-  }
-
+function counter() { // <--------------------------------------------------------------------------|
+  // Retorna una funcion que cuando sea invocada retorne un valor creciente.                       |
+  // el primer valor deberia ser 1.                                                                |
+  // Vas a tener que usar closures.                                                                |
+  // ejemplo: const newCounter = counter();                                                        |
+  // newCounter(); // 1                                                                            |
+  // newCounter(); // 2                                                                            |
+   var number = 0;  // Creo una variable en cero para aumentarla despues dentro de la función      |
+   return function (){  //Creo la funcion que se va a retornar al invocar esta funcion------------ |
+     return ++ number; //Aqui primero se aumenta al numero y despues se retorna al ser invocada la funcion
+   }
 }
 
 function cacheFunction(cb) {
@@ -27,16 +25,14 @@ function cacheFunction(cb) {
   // si la invocas de nuevo con 5, deberia retornar 25 (guardado previament en el cache)
   // Tips, usá un objeto donde cada propiedad sea un argumento, y el valor el resultado.
   // usá hasOwnProperty!
-  var obj ={};
-  var arg;
+  var obj = {};
   return function (arg){
-    if(obj.hasOwnProperty(arg)){
-      
-      return obj[arg];
-    } else {
-      obj[arg]=cb(arg);
-      return obj[arg];
-    }
+     if (obj.hasOwnProperty(arg)===true){
+       return obj[arg];
+     } else{
+        obj[arg] = cb(arg);
+        return obj[arg];
+     }
   }
 }
 
@@ -58,8 +54,8 @@ function getNombre(){
  // Escribir código, sin modificar lo que ya se encuentra escrito arriba, para poder llamar al método getNombre para obtener primero el nombre del instructor y luego para obtener el nombre del alumno.
 // Modificar los undefined por el código correspondiente en cada caso
 // Pista, tenes que bindear el this!
-let getNombreInstructor = undefined;
-let getNombreAlumno = undefined;
+let getNombreInstructor = getNombre.bind(instructor);
+let getNombreAlumno = getNombre.bind(alumno);
 
 
 /*Guardar en las siguientes tres variables una función que devuelva una cadena utilizando la función "crearCadena"
@@ -78,11 +74,11 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena){
 // Modificar los undefined por el código correspondiente en cada caso
 // Pista, tenes que usar bind para "bindear" algunos parámetros de la función crearCadena.
 
-let textoAsteriscos = undefined;
+let textoAsteriscos = crearCadena.bind(this,'*','*'); // El primer parametro del metodo "bind" siempre hace referencia al "this" los siguientes bindean parametros.
 
-let textoGuiones = undefined;
+let textoGuiones = crearCadena.bind(this,'-','-');
 
-let textoUnderscore = undefined;
+let textoUnderscore = crearCadena.bind(this,'_','_');
 
 
 
